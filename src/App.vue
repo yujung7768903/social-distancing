@@ -1,22 +1,36 @@
 <template>
   <div id="app">
     <div id="app-content">
+      <div id="title">
+        <span>사회적 </span>
+        <span style="color: var(--color-point);">거리두기</span>
+      </div id="title">
       <div class="meeting-container">
-        <b-card class="small" header="사적 모임">
-          <b-card-text>전국 6인</b-card-text>
-        </b-card>
-        <b-card class="small" header="행사·집회">
-          <b-card-text>50명 미만: 접종자·미접종자 구분없이 가능</b-card-text>
-          <b-card-text>50명 이상: 접종완료자 등으로만 구성하여 299명까지 가능</b-card-text>
-        </b-card>
+        <div class="article horizontal">
+          <div class="point box">사적모임</div>
+          <b-card>
+            <b-card-text>전국 6인</b-card-text>
+          </b-card>
+        </div>
+        <div class="article horizontal">
+          <div class="point box">행사·집회</div>
+          <b-card>
+            <b-card-text>50명 미만 | 접종자·미접종자 구분없이 가능<br>50명 이상 | 접종완료자 등으로만 구성하여 299명까지 가능</b-card-text>
+          </b-card>
+        </div>
       </div>
-      <b-card class="left" header="최신 뉴스">
+      <b-card class="left">
         <b-card-text>
           사적모임 인원 전국 6인 유지, 영업시간 22시로 완화, 내일부터 즉시 시행(2.19~3.13)
         </b-card-text>
-        <b-button href="http://ncov.mohw.go.kr/tcmBoardView.do?brdId=&brdGubun=&dataGubun=&ncvContSeq=370247&contSeq=370247&board_id=&gubun=ALL" variant="primary">보러가기</b-button>
+        <button class="point box" href="http://ncov.mohw.go.kr/tcmBoardView.do?brdId=&brdGubun=&dataGubun=&ncvContSeq=370247&contSeq=370247&board_id=&gubun=ALL">보러가기</button>
       </b-card>
-      <b-table :items="items" :fields="fields"></b-table>
+      <b-table :items="items" :fields="fields">
+        <template #cell(운영시간)="data" v-for="item in fields">
+          <span>시작: {{data.item.운영시간.open}}</span><br>
+          <span>종료: {{data.item.운영시간.close}}</span>
+        </template>
+      </b-table>
     </div>
   </div>
 </template>
@@ -32,9 +46,9 @@ export default {
     return {
       fields: ['시설', '운영시간', '이용가능대상'],
         items: [
-          { isActive: false, "시설": "영화관‧공연장", "운영시간": '시작: ~22시 | 종료: ~24시', "이용가능대상": '접종 여부 구분없음' },
-          { isActive: false, "시설": "학원", "운영시간": '종료: ~22시', "이용가능대상": '접종 여부 구분없음' },
-          { isActive: true, "시설": "독서실·스터디카페", "운영시간": '제한 없음', "이용가능대상": '접종 여부 구분없음' }
+          { isActive: false, 시설: '영화관‧공연장', 운영시간: {open: '22시\n', close: '24시'}, 이용가능대상: '접종 여부 구분없음' },
+          { isActive: false, 시설: '학원', 운영시간: {close: '22'}, 이용가능대상: '접종 여부 구분없음' },
+          { isActive: true, 시설: '독서실·스터디카페', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 여부 구분없음' }
         ]
     }
   }
@@ -42,24 +56,79 @@ export default {
 </script>
 
 <style>
+@font-face {
+    font-family: "GmarketSans";
+    src: url('../resources/fonts/GmarketSansTTFLight.ttf') format('truetype');
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "GmarketSans";
+    src: url('../resources/fonts/GmarketSansTTFMedium.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "GmarketSans";
+    src: url('../resources/fonts/GmarketSansTTFBold.ttf') format('truetype');
+    font-weight: 700;
+}
+:root {
+  /* color */
+  --color-point: #1CA7EC;
+  --color-gray: #E5E5E5;
+
+  /* font-size */
+  --font-small: 14px;
+  --font-medium: 18px;
+  --font-title-1: 36px;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  padding: 30px;
+  font-family: GmarketSans, Avenir, Helvetica, Arial, sans-serif;
+  font-size: var(--font-small);
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  vertical-align: middle;
   color: #2c3e50;
-  padding: 30px;
+  box-sizing: border-box;
+}
+#title {
+  font-size: var(--font-title-1);
+  font-weight: 700;
 }
 #app-content {
   width: 630px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
   justify-content: center;
   align-items: center;
+  margin: auto;
+  gap: 40px;
+}
+.point.box {
+  width: 100px;
+  padding: 6px 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-point);
+  color: white;
+  text-align: center;
+  line-height: 1.5;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  box-shadow: 2px 2px 10px var(--color-gray);
+
 }
 .card {
   width: 100%;
+  text-align: left;
+  box-shadow: 2px 2px 5px var(--color-gray);
 }
 .card.left {
   text-align: left;
@@ -67,13 +136,23 @@ export default {
 .small.card {
   width: 300px;
 }
+.card-header {
+  font: bold;
+}
 .card-body {
   vertical-align: center;
 }
+.article.horizontal {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
 .meeting-container {
+  width: 100%;
   display: flex; 
-  flex-direction: row; 
-  gap: 30px;
+  flex-direction: column; 
+  gap: 20px;
   justify-content: center;
 }
 </style>
