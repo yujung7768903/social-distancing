@@ -4,7 +4,7 @@
       <div id="title">
         <span>사회적 </span>
         <span style="color: var(--color-point);">거리두기</span>
-      </div id="title">
+      </div>
       <div class="meeting-container">
         <div class="article horizontal">
           <div class="point box">사적모임</div>
@@ -23,10 +23,10 @@
         <b-card-text>
           사적모임 인원 전국 6인 유지, 영업시간 22시로 완화, 내일부터 즉시 시행(2.19~3.13)
         </b-card-text>
-        <button class="point box" href="http://ncov.mohw.go.kr/tcmBoardView.do?brdId=&brdGubun=&dataGubun=&ncvContSeq=370247&contSeq=370247&board_id=&gubun=ALL">보러가기</button>
+        <a class="point box" href="http://ncov.mohw.go.kr/tcmBoardView.do?brdId=&brdGubun=&dataGubun=&ncvContSeq=370247&contSeq=370247&board_id=&gubun=ALL">보러가기</a>
       </b-card>
       <b-table :items="items" :fields="fields">
-        <template #cell(운영시간)="data" v-for="item in fields">
+        <template #cell(운영시간)="data">
           <span>시작: {{data.item.운영시간.open}}</span><br>
           <span>종료: {{data.item.운영시간.close}}</span>
         </template>
@@ -123,7 +123,7 @@ export default {
   border: 1px solid transparent;
   border-radius: 0.25rem;
   box-shadow: 2px 2px 10px var(--color-gray);
-
+  text-decoration: none;
 }
 .card {
   width: 100%;
