@@ -23,14 +23,32 @@
         <b-card-text>
           사적모임 인원 전국 6인 유지, 영업시간 22시로 완화, 내일부터 즉시 시행(2.19~3.13)
         </b-card-text>
-        <a class="point box" href="http://ncov.mohw.go.kr/tcmBoardView.do?brdId=&brdGubun=&dataGubun=&ncvContSeq=370247&contSeq=370247&board_id=&gubun=ALL">보러가기</a>
+        <a class="point box" target="_blank" href="http://ncov.mohw.go.kr/tcmBoardView.do?brdId=&brdGubun=&dataGubun=&ncvContSeq=370247&contSeq=370247&board_id=&gubun=ALL">보러가기</a>
       </b-card>
-      <b-table :items="items" :fields="fields">
-        <template #cell(운영시간)="data">
-          <span>시작: {{data.item.운영시간.open}}</span><br>
-          <span>종료: {{data.item.운영시간.close}}</span>
-        </template>
-      </b-table>
+      <b-card>
+        <b-table bordered sticky-header head-variant="dark" :items="items" :fields="fields" :tbody-tr-class="rowClass">
+          <template #table-colgroup="scope">
+            <col
+              v-for="field in scope.fields"
+              :key="field.key"
+              :style="{ width: field.key === '운영시간' ? '100px' : 'auto' }"
+            >
+          </template>
+        </b-table>
+      </b-card>
+      <b-card class="left">
+        <b-card-text>
+          위 자료는 코로나바이러스감염증-19(COVID-19)에서 제공하는 보도자료를 기반으로 제작되었습니다. 
+        </b-card-text>
+        <button class="point box" href="#" @click="showFeedbackArea">오류제보</button>
+        <b-form-textarea
+          id="feedbackArea"
+          size="sm"
+          v-model="text"
+          v-if="feedbackArea == true"
+          placeholder="오류를 제보해주세요. 피드백은 언제나 환영합니다. 감사합니다:)"
+        ></b-form-textarea>
+      </b-card>
     </div>
   </div>
 </template>
@@ -44,12 +62,52 @@ export default {
   },
   data() {
     return {
-      fields: ['시설', '운영시간', '이용가능대상'],
-        items: [
-          { isActive: false, 시설: '영화관‧공연장', 운영시간: {open: '22시\n', close: '24시'}, 이용가능대상: '접종 여부 구분없음' },
-          { isActive: false, 시설: '학원', 운영시간: {close: '22'}, 이용가능대상: '접종 여부 구분없음' },
-          { isActive: true, 시설: '독서실·스터디카페', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 여부 구분없음' }
-        ]
+      fields: [
+        {key: '시설'}, 
+        {key: '운영시간', formatter: 'openingHour'}, 
+        {key: '이용가능대상'}],
+      items: [
+        { isActive: false, 시설: '식당‧카페', 운영시간: {close: '22'}, 이용가능대상: '접종 완료자' },
+        { isActive: false, 시설: '영화관‧공연장', 운영시간: {open: '22', close: '24'}, 이용가능대상: '접종 여부 구분없음' },
+        { isActive: false, 시설: '학원', 운영시간: {close: '22'}, 이용가능대상: '접종 여부 구분없음' },
+        { isActive: true, 시설: '독서실·스터디카페', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 여부 구분없음' },
+        { isActive: true, 시설: '오락실', 운영시간: {close: '22'}, 이용가능대상: '접종 여부 구분없이 4㎡당 1명' },
+        { isActive: true, 시설: '도서관', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 여부 구분없음' },
+        { isActive: true, 시설: '박물관·미술관·과학관', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 여부 구분없음' },
+        { isActive: true, 시설: '놀이공원‧워터파크', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 여부 수용인원의 50%' },
+        { isActive: true, 시설: '실외체육시설', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 여부 구분없이, 밀집도 제한 없음' },
+        { isActive: true, 시설: '백화점·상점·마트(300㎡이상)', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 여부 구분없이, 밀집도 제한 없음' },
+        { isActive: true, 시설: '전시회‧박람회', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 구분 없이 50명 미만(4㎡당 1명)' },
+      ],
+      feedbackArea: false
+    }
+  },
+  methods: {
+    openingHour(value) {
+      if (value.close === "제한 없음") {
+        return `제한 없음`
+      }
+      else if(value.open && value.close) {
+        return `시작: ~${value.open}시 종료: ~${value.close}시`
+      }
+      else {
+        return `종료: ~${value.close}시`
+      }
+    },
+    rowClass(item) {
+      console.log(item.운영시간.close);
+      if (item.운영시간.close === "제한 없음") {
+        return "no-limit"
+      }
+    },
+    showFeedbackArea() {
+      console.log("showFeedbackArea");
+      if (this.feedbackArea === false) {
+        this.feedbackArea = true
+      }
+      else {
+        this.feedbackArea = false
+      }
     }
   }
 }
@@ -76,15 +134,22 @@ export default {
 :root {
   /* color */
   --color-point: #1CA7EC;
+  --color-sky-blue: #EAF5FA;
   --color-gray: #E5E5E5;
+  --color-light-gray: #F4F4F4;
 
   /* font-size */
   --font-small: 14px;
   --font-medium: 18px;
   --font-title-1: 36px;
 }
+.content {
+  height: 300px;
+  overflow-y: scroll;
+}
 #app {
-  padding: 30px;
+  padding: 40px;
+  margin-bottom: 30px;
   font-family: GmarketSans, Avenir, Helvetica, Arial, sans-serif;
   font-size: var(--font-small);
   font-weight: 400;
@@ -154,5 +219,11 @@ export default {
   flex-direction: column; 
   gap: 20px;
   justify-content: center;
+}
+.no-limit {
+  background-color: var(--color-sky-blue);
+}
+#feedbackArea {
+  margin-top: 20px;
 }
 </style>
