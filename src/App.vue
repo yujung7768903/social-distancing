@@ -25,17 +25,7 @@
         </b-card-text>
         <a class="point box" target="_blank" href="http://ncov.mohw.go.kr/tcmBoardView.do?brdId=&brdGubun=&dataGubun=&ncvContSeq=370247&contSeq=370247&board_id=&gubun=ALL">보러가기</a>
       </b-card>
-      <b-card>
-        <b-table bordered sticky-header head-variant="dark" :items="items" :fields="fields" :tbody-tr-class="rowClass">
-          <template #table-colgroup="scope">
-            <col
-              v-for="field in scope.fields"
-              :key="field.key"
-              :style="{ width: field.key === '운영시간' ? '100px' : 'auto' }"
-            >
-          </template>
-        </b-table>
-      </b-card>
+      <rule-list></rule-list>
       <b-card class="left">
         <b-card-text>
           위 자료는 코로나바이러스감염증-19(COVID-19)에서 제공하는 보도자료를 기반으로 제작되었습니다. 
@@ -54,11 +44,12 @@
 </template>
 
 <script>
+import ruleList from "./components/rule-list.vue"
 
 export default {
   name: 'App',
   components: {
-    
+    ruleList
   },
   data() {
     return {
@@ -83,23 +74,6 @@ export default {
     }
   },
   methods: {
-    openingHour(value) {
-      if (value.close === "제한 없음") {
-        return `제한 없음`
-      }
-      else if(value.open && value.close) {
-        return `시작: ~${value.open}시 종료: ~${value.close}시`
-      }
-      else {
-        return `종료: ~${value.close}시`
-      }
-    },
-    rowClass(item) {
-      console.log(item.운영시간.close);
-      if (item.운영시간.close === "제한 없음") {
-        return "no-limit"
-      }
-    },
     showFeedbackArea() {
       console.log("showFeedbackArea");
       if (this.feedbackArea === false) {
@@ -219,9 +193,6 @@ export default {
   flex-direction: column; 
   gap: 20px;
   justify-content: center;
-}
-.no-limit {
-  background-color: var(--color-sky-blue);
 }
 #feedbackArea {
   margin-top: 20px;
