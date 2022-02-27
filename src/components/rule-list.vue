@@ -65,8 +65,31 @@ export default {
 <style>
 .b-table-sticky-header > .table.b-table > thead > tr > th {
   background-color: var(--color-light-gray);
+  border: none;
 }
 .no-limit {
   background-color: var(--color-sky-blue);
+}
+.b-table-sticky-header > .table.b-table > thead, 
+.b-table-sticky-header > .table.b-table > tbody,
+.b-table-sticky-header > .table.b-table > thead > tr {
+  border-top: none;
+}
+th:after,
+th:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+th:before {
+  top: 0px;
+  border-top: 1px solid var(--color-gray);
+}
+
+th:after {
+  bottom: -1px;
+  border-bottom: 2px solid var(--color-gray);
 }
 </style>
