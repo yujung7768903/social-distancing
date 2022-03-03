@@ -105,6 +105,7 @@ export default {
     src: url('../resources/fonts/GmarketSansTTFBold.ttf') format('truetype');
     font-weight: 700;
 }
+
 :root {
   /* color */
   --color-point: #1CA7EC;
@@ -117,10 +118,12 @@ export default {
   --font-medium: 18px;
   --font-title-1: 36px;
 }
+
 .content {
   height: 300px;
   overflow-y: scroll;
 }
+
 #app {
   padding: 40px;
   margin-bottom: 30px;
@@ -134,10 +137,12 @@ export default {
   color: #2c3e50;
   box-sizing: border-box;
 }
+
 #title {
   font-size: var(--font-title-1);
   font-weight: 700;
 }
+
 #app-content {
   width: 630px;
   display: flex;
@@ -147,6 +152,7 @@ export default {
   margin: auto;
   gap: 40px;
 }
+
 .point.box {
   width: 100px;
   padding: 6px 12px;
@@ -164,29 +170,36 @@ export default {
   box-shadow: 2px 2px 10px var(--color-gray);
   text-decoration: none;
 }
+
 .card {
   width: 100%;
   text-align: left;
   box-shadow: 2px 2px 5px var(--color-gray);
 }
+
 .card.left {
   text-align: left;
 }
+
 .small.card {
   width: 300px;
 }
+
 .card-header {
   font: bold;
 }
+
 .card-body {
   vertical-align: center;
 }
+
 .article.horizontal {
   width: 100%;
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
+
 .meeting-container {
   width: 100%;
   display: flex; 
@@ -194,7 +207,9 @@ export default {
   gap: 20px;
   justify-content: center;
 }
+
 #feedbackArea {
   margin-top: 20px;
 }
+
 </style>

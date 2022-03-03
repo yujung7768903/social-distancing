@@ -63,18 +63,23 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.b-table-sticky-header > .table.b-table > thead > tr > th {
-  background-color: var(--color-light-gray);
-  border: none;
-}
 .no-limit {
   background-color: var(--color-sky-blue);
 }
+.card > .card-body > .b-table-sticky-header {
+  margin-bottom: 0px;
+}
+
 .b-table-sticky-header > .table.b-table > thead, 
 .b-table-sticky-header > .table.b-table > tbody,
 .b-table-sticky-header > .table.b-table > thead > tr {
   border-top: none;
 }
+
+.b-table-sticky-header > .table.b-table > thead > tr > th {
+  background-color: var(--color-light-gray);
+}
+
 th:after,
 th:before {
   content: '';
@@ -92,4 +97,5 @@ th:after {
   bottom: -1px;
   border-bottom: 2px solid var(--color-gray);
 }
+
 </style>
