@@ -31,25 +31,20 @@
           위 자료는 코로나바이러스감염증-19(COVID-19)에서 제공하는 보도자료를 기반으로 제작되었습니다. 
         </b-card-text>
         <button class="point box" href="#" @click="showFeedbackArea">오류제보</button>
-        <b-form-textarea
-          id="feedbackArea"
-          size="sm"
-          v-model="text"
-          v-if="feedbackArea == true"
-          placeholder="오류를 제보해주세요. 피드백은 언제나 환영합니다. 감사합니다:)"
-        ></b-form-textarea>
       </b-card>
+      <feedback v-if="feedbackArea == true"></feedback>
     </div>
   </div>
 </template>
 
 <script>
 import ruleList from "./components/rule-list.vue"
+import feedback from "./components/feedback.vue"
 
 export default {
   name: 'App',
   components: {
-    ruleList
+    ruleList, feedback
   },
   data() {
     return {
@@ -151,6 +146,17 @@ export default {
   align-items: center;
   margin: auto;
   gap: 40px;
+}
+
+.horizontal.container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.container.center {
+  justify-content: center;
+  align-content: center;
 }
 
 .point.box {

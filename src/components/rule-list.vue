@@ -1,15 +1,17 @@
 <template>
-<b-card>
-    <b-table bordered sticky-header :items="items" :fields="fields" :tbody-tr-class="rowClass">
-        <template #table-colgroup="scope">
-        <col
-            v-for="field in scope.fields"
-            :key="field.key"
-            :style="{ width: field.key === '운영시간' ? '100px' : 'auto' }"
-        >
-        </template>
-    </b-table>
-</b-card>
+  <div id="rule-list">
+    <b-card>
+        <b-table bordered sticky-header :items="items" :fields="fields" :tbody-tr-class="rowClass">
+            <template #table-colgroup="scope">
+            <col
+                v-for="field in scope.fields"
+                :key="field.key"
+                :style="{ width: field.key === '운영시간' ? '100px' : 'auto' }"
+            >
+            </template>
+        </b-table>
+    </b-card>
+  </div>
 </template>
 
 <script>
@@ -52,7 +54,6 @@ export default {
       }
     },
     rowClass(item) {
-      console.log(item.운영시간.close);
       if (item.운영시간.close === "제한 없음") {
         return "no-limit"
       }
@@ -63,6 +64,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+#rule-list {
+  width: 100%;
+}
 .no-limit {
   background-color: var(--color-sky-blue);
 }
