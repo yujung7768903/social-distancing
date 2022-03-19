@@ -9,7 +9,7 @@
         <div class="article horizontal">
           <div class="point box">사적모임</div>
           <b-card>
-            <b-card-text>전국 6인</b-card-text>
+            <b-card-text>전국 8인 (백신접종자·미접종자 구별 없이, 수도권·비수도권)</b-card-text>
           </b-card>
         </div>
         <div class="article horizontal">
@@ -21,9 +21,9 @@
       </div>
       <b-card class="left">
         <b-card-text>
-          사적모임 인원 전국 6인 유지, 영업시간 22시로 완화, 내일부터 즉시 시행(2.19~3.13)
+          사회적 거리두기, 사적인원 소폭 조정(3.21~4.3)
         </b-card-text>
-        <a class="point box" target="_blank" href="http://ncov.mohw.go.kr/tcmBoardView.do?brdId=&brdGubun=&dataGubun=&ncvContSeq=370247&contSeq=370247&board_id=&gubun=ALL">보러가기</a>
+        <a class="point box" target="_blank" href="http://ncov.mohw.go.kr/tcmBoardView.do?brdId=3&brdGubun=31&dataGubun=&ncvContSeq=6496&contSeq=6496&board_id=311&gubun=ALL">보러가기</a>
       </b-card>
       <rule-list></rule-list>
       <b-card class="left">
