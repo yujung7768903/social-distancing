@@ -15,7 +15,7 @@
         <div class="article horizontal">
           <div class="point box">행사·집회</div>
           <b-card>
-            <b-card-text>50명 미만 | 접종자·미접종자 구분없이 가능<br>50명 이상 | 접종완료자 등으로만 구성하여 299명까지 가능</b-card-text>
+            <b-card-text>접종 여부 관계없이 299명까지 가능<br>300명 이상 행사(비정규공연장·스포츠대회·축제)는 관계부처 승인 하에 관리</b-card-text>
           </b-card>
         </div>
       </div>
@@ -52,19 +52,6 @@ export default {
         {key: '시설'}, 
         {key: '운영시간', formatter: 'openingHour'}, 
         {key: '이용가능대상'}],
-      items: [
-        { isActive: false, 시설: '식당‧카페', 운영시간: {close: '22'}, 이용가능대상: '접종 완료자' },
-        { isActive: false, 시설: '영화관‧공연장', 운영시간: {open: '22', close: '24'}, 이용가능대상: '접종 여부 구분없음' },
-        { isActive: false, 시설: '학원', 운영시간: {close: '22'}, 이용가능대상: '접종 여부 구분없음' },
-        { isActive: true, 시설: '독서실·스터디카페', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 여부 구분없음' },
-        { isActive: true, 시설: '오락실', 운영시간: {close: '22'}, 이용가능대상: '접종 여부 구분없이 4㎡당 1명' },
-        { isActive: true, 시설: '도서관', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 여부 구분없음' },
-        { isActive: true, 시설: '박물관·미술관·과학관', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 여부 구분없음' },
-        { isActive: true, 시설: '놀이공원‧워터파크', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 여부 수용인원의 50%' },
-        { isActive: true, 시설: '실외체육시설', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 여부 구분없이, 밀집도 제한 없음' },
-        { isActive: true, 시설: '백화점·상점·마트(300㎡이상)', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 여부 구분없이, 밀집도 제한 없음' },
-        { isActive: true, 시설: '전시회‧박람회', 운영시간: {close: '제한 없음'}, 이용가능대상: '접종 구분 없이 50명 미만(4㎡당 1명)' },
-      ],
       feedbackArea: false
     }
   },
