@@ -30,10 +30,11 @@ export default {
                 console.log(result);
             }, (error) => {
                 console.log(error);
-            })
+            });
+            this.$emit('_closeFeedbackArea');
         },
         resetFeedback() {
-            this.feedback = ''
+            this.feedback = '';
         },
     }
 }

@@ -32,7 +32,10 @@
         </b-card-text>
         <button class="point box" href="#" @click="showFeedbackArea">오류제보</button>
       </b-card>
-      <feedback v-if="feedbackArea == true"></feedback>
+      <feedback 
+        v-if="feedbackArea == true"
+        @_closeFeedbackArea = "closeFeedbackArea"
+      ></feedback>
     </div>
   </div>
 </template>
@@ -64,6 +67,9 @@ export default {
       else {
         this.feedbackArea = false
       }
+    },
+    closeFeedbackArea() {
+      this.feedbackArea = false
     }
   }
 }
