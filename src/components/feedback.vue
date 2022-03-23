@@ -1,8 +1,8 @@
 <template>
     <div id="feedback">
         <div class="black-bg"></div>
-        <b-form id="feedback-area" @submit="submitFeedback" @reset="resetFeedback">
-            <b-form-textarea vmodel="feedback" rows="5" placeholder="오류를 제보해주세요. 피드백은 언제나 환영합니다. 감사합니다:)">
+        <b-form ref="form" id="feedback-area" @submit.prevent="submitFeedback" @reset="resetFeedback">
+            <b-form-textarea name="feedback" vmodel="feedback" rows="5" placeholder="오류를 제보해주세요. 피드백은 언제나 환영합니다. 감사합니다:)">
             </b-form-textarea>
             <div class="horizontal container center">
                 <b-button class="point box" type="submit">제출</b-button>
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import emailjs from '@emailjs/browser';
+
 export default {
     name: 'feedback',
     data() {
@@ -22,11 +24,17 @@ export default {
     },
     methods: {
         submitFeedback() {
-
+            console.log("submitFeedback");
+            emailjs.sendForm('social-distancing', 'template_c0hvs17', this.$refs.form, 'gZx2q2lwJSMSqEG8f')
+            .then((result) => {
+                console.log(result);
+            }, (error) => {
+                console.log(error);
+            })
         },
         resetFeedback() {
             this.feedback = ''
-        }
+        },
     }
 }
 </script>
