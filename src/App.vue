@@ -211,4 +211,24 @@ export default {
   margin-top: 20px;
 }
 
+@media screen and (max-width : 670px) {
+  #app {
+    padding: 20px;
+  }
+  #app-content {
+    width: 100%;
+    min-width: 330px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    gap: 40px;
+  }
+  .article.horizontal {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 </style>
