@@ -6,7 +6,7 @@
             <col
                 v-for="field in scope.fields"
                 :key="field.key"
-                :style="{ width: field.key === '운영시간' ? '120px' : 'auto' }"
+                :style="{ width: field.key === '운영시간' ? '105px' : 'auto' }"
             >
             </template>
         </b-table>
@@ -27,13 +27,13 @@ export default {
         {key: '운영시간', formatter: 'openingHour'}, 
         {key: '상세'}],
         items: [
-            { isActive: false, 시설: '유흥시설', 운영시간: {close: '23'}, 상세: '취식: 콜라텍·무도장은 불가능, 그 외 유흥시설 가능' },
-            { isActive: false, 시설: '식당‧카페', 운영시간: {close: '23'}, 상세: '시설 내 춤추기 금지, 테이블 간 이동 금지, 23시 이후 포장 가능' },
-            { isActive: false, 시설: '노래(코인) 연습장', 운영시간: {close: '23'}, 상세: '취식: 불가' },
-            { isActive: false, 시설: '영화관‧공연장', 운영시간: {open: '23', close: '익일 1'}, 상세: '종료시각은 익일 1시 초과 금지, 취식 불가, 지정된 좌석에서만 관람하도록 안내' },
-            { isActive: false, 시설: '학원', 운영시간: {close: '23'}, 상세: '취식: 불가, 환기‧소독 : 1일 3회 이상 환기 및 1회 이상 소독' },
+            { isActive: false, 시설: '유흥시설', 운영시간: {close: '24'}, 상세: '취식: 콜라텍·무도장은 불가능, 그 외 유흥시설 가능' },
+            { isActive: false, 시설: '식당‧카페', 운영시간: {close: '24'}, 상세: '시설 내 춤추기 금지, 테이블 간 이동 금지, 24시 이후 포장 가능' },
+            { isActive: false, 시설: '노래(코인) 연습장', 운영시간: {close: '24'}, 상세: '취식: 불가' },
+            { isActive: false, 시설: '영화관‧공연장', 운영시간: {open: '24'}, 상세: '종료시각은 익일 1시 초과 금지, 취식 불가, 지정된 좌석에서만 관람하도록 안내' },
+            { isActive: false, 시설: '학원', 운영시간: {close: '24'}, 상세: '취식: 불가, 환기‧소독 : 1일 3회 이상 환기 및 1회 이상 소독' },
             { isActive: true, 시설: '독서실·스터디카페', 운영시간: {close: '제한 없음'}, 상세: '취식: 불가, 환기‧소독 : 1일 3회 이상 환기 및 1회 이상 소독' },
-            { isActive: true, 시설: 'PC방, 오락실', 운영시간: {close: '23'}, 상세: '취식: 불가' },
+            { isActive: true, 시설: 'PC방, 오락실', 운영시간: {close: '24'}, 상세: '취식: 불가' },
             { isActive: true, 시설: '도서관', 운영시간: {close: '제한 없음'}, 상세: '취식: 불가, 사전예약제 운영' },
             { isActive: true, 시설: '박물관·미술관·과학관', 운영시간: {close: '제한 없음'}, 상세: '취식: 불가, 사전예약제 운영' },
             { isActive: true, 시설: '놀이공원‧워터파크', 운영시간: {close: '제한 없음'}, 상세: '취식: 가능' },
@@ -49,8 +49,8 @@ export default {
       if (value.close === "제한 없음") {
         return `제한 없음`
       }
-      else if(value.open && value.close) {
-        return `시작: ~${value.open}시 \n 종료: ~${value.close}시`
+      else if(value.open) {
+        return `시작: ~${value.open}시`
       }
       else {
         return `종료: ~${value.close}시`
