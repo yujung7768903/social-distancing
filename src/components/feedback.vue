@@ -2,6 +2,7 @@
     <div id="feedback">
         <div class="black-bg"></div>
         <b-form ref="form" id="feedback-area" @submit.prevent="submitFeedback" @reset="resetFeedback">
+            <img class="btn-close" @click="closeFeedback" src="../assets/btn_close.png" alt="">
             <span>이메일</span>
             <b-form-input name="email" type="email" placeholder="이메일을 남겨주시면, 오류 수정이 완료되었을 때 알려드립니다."></b-form-input>
             <span>오류제보</span>
@@ -34,11 +35,14 @@ export default {
             }, (error) => {
                 console.log(error);
             });
-            this.$emit('_closeFeedbackArea');
+            this.closeFeedback();
         },
         resetFeedback() {
             this.feedback = '';
         },
+        closeFeedback() {
+            this.$emit('_closeFeedbackArea');
+        }
     }
 }
 </script>
@@ -63,7 +67,7 @@ export default {
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   z-index: 4;
 }
 
@@ -75,9 +79,9 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: left;
-  gap: 10px;
+  gap: 20px;
   border-radius: 0.25rem;
-  padding: 20px;
+  padding: 25px 20px;
   background: white;
   margin: auto;
   z-index: 5;
@@ -85,5 +89,17 @@ export default {
 
 #feedback-area > span {
     text-align: left;
+}
+
+#feedback-area > .btn-close {
+    position: absolute;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    align-self: flex-end;
+}
+
+#feedback-area > .btn-close:hover {
+    opacity: 1;
 }
 </style>
